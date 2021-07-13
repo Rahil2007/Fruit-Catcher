@@ -40,6 +40,7 @@ class Game{
         form.hide();
 
         Player.getPlayerInfo();
+
         image(back_img, 0, 0, 1000, 800);
         var x =100;
         var y=200;
@@ -58,6 +59,9 @@ class Game{
                 textSize(32);
                 fill(0)
                 text(allPlayers[plr].name, x-45, y+45);
+                fill(255);
+                text("Player 1 : " + allPlayers.player1.score, 50, 50);
+                text("Player 2 : " + allPlayers.player2.score, 50, 90);
             }          
         }
 
@@ -93,7 +97,9 @@ class Game{
         if (player.index !== null) {
             for (var i = 0; i < fruitGroup.length; i++) {
                 if (fruitGroup.get(i).isTouching(players)) {
-                    fruitGroup.get(i).destroy();          
+                    fruitGroup.get(i).destroy();   
+                    player.score = player.score+1;  
+                    player.update();
                 }
             }
         }
